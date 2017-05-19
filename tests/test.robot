@@ -4,7 +4,7 @@
 *** Test Cases ***
 My Test case
 	Tee jotain
-	Tama failaa
+	Run Keyword And Expect Error	1 != 2	Tama failaa
 
 My another Test case
 	Run Keyword And Expect Error	1 != 2	Tama failaa
