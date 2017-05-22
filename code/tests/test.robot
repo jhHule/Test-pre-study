@@ -1,19 +1,17 @@
 *** Settings ***
-
-*** Variables ***
-${NIMI}	Hule
+Library	StorageLibrary.py
 
 
 *** Test Cases ***
 My Test case
-	Tee jotain
-	Run Keyword And Expect Error	1 != 2	Tama failaa
+	write storage point value	0	12
+	${V1}=	read storage point value	0
+	Should be equal	${V1}	12
+	Tama failaa
 
 My another Test case
-	Run Keyword And Expect Error	1 != 2	Tama failaa
-
-Uusi test case
-	Tervehdys
+	Run Keyword And Expect Error	Tama failaa
+	
 	
 *** Keywords ***
 Tee jotain
@@ -21,7 +19,3 @@ Tee jotain
 	
 Tama failaa
 	Should Be Equal	1	2
-	
-Tervehdys
-	Log	${NIMI}
-	
