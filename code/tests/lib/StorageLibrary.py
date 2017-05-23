@@ -36,7 +36,11 @@ class StorageLibrary(object):
 
     def read_storage_point_value(self, id):
         numeric_id = int(id)
-        return self.client.read(numeric_id)
+        exists = self._has_storage_point(numeric_id)
+        if exists:
+            return self.client.read(numeric_id)
+
+        raise AssertionError("Storage point does not exists")
 
     def write_storage_point_value(self, id, value):
         numeric_id = int(id)
@@ -50,10 +54,33 @@ class StorageLibrary(object):
         if not r2 == value:
             raise AssertionError("write read failed")
 
+    def read_storage_points(self):
+        points = self.client.storagePoints()
+
+        print("type: " + str(type(points)))
+        for point in points:
+            print("ID:" + str(point.storageId) + " Name: " + point.name + " Desc:" + str(
+                point.description) + " Value:" + str(point.value))
+        #raise AssertionError("write read failed")
+
+    def _has_storage_point(self, id):
+        points = self.client.storagePoints()
+
+        print("type: " + str(type(points)))
+        for point in points:
+            print("ID:" + str(point.storageId) + " Name: " + point.name + " Desc:" + str(
+                point.description) + " Value:" + str(point.value))
+            if point.storageId == id:
+                return True
+
+        return False
+
+
 
 if __name__ == "__main__":
     app = StorageLibrary()
     app.client.ping()
-    app.write_storage_point_value(0, "new value")
-    print("value: " + app.read_storage_point_value(0))
+    app.read_storage_points()
+    #app.write_storage_point_value(0, "new value")
+    #print("value: " + app.read_storage_point_value(0))
     app.Close()
