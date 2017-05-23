@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>thrift-csharp</id>
+    <version>0.10.0</version>
+    <title>thrift-csharp</title>
+    <authors>The Apache Software Foundation</authors>
+    <owners>The Apache Software Foundation</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>https://github.com/apache/thrift/releases/tag/0.10.0</description>
+    <summary />
+    <copyright>The Apache Software Foundation</copyright>
+    <tags>thrift</tags>
+  </metadata>
+</package>

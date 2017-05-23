@@ -22,8 +22,6 @@ namespace ThriftServer
             };
         }
 
-        
-
         public void ping()
         {
             Console.WriteLine("ping()");
@@ -36,6 +34,7 @@ namespace ThriftServer
 
         public string read(int id)
         {
+            Console.WriteLine(String.Format("read id:{0}",id));
             if (!_point.ContainsKey(id))
             {
                 return "N/A";
@@ -51,6 +50,7 @@ namespace ThriftServer
 
         public bool write(int id, string value)
         {
+            Console.WriteLine(String.Format("write id:{0}", id));
             if (!_point.ContainsKey(id))
             {
                 return false;

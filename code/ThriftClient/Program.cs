@@ -29,6 +29,16 @@ namespace ThriftClient
                     Console.WriteLine("ping()");
 
                     var list = client.storagePoints();
+                    foreach (var item in list)
+                    {
+                        string description = "";
+                        if (!string.IsNullOrEmpty(item.Description))
+                        {
+                            description = item.Description;
+                        }
+                        Console.WriteLine(string.Format("ID: {0} name:{1} description:{2}",
+                            item.StorageId, item.Name, description));
+                    }
                     var result = client.read(0);
                     bool r = client.write(0, "new value");
                     result = client.read(0);
