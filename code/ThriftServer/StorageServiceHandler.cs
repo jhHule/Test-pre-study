@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,6 +72,9 @@ namespace ThriftServer
         public bool write(int id, string value)
         {
             Console.WriteLine(String.Format("write id:{0}", id));
+            if (string.IsNullOrEmpty(value))
+                return false;
+
             if (!_point.ContainsKey(id))
             {
                 return false;
