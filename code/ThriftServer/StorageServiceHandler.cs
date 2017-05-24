@@ -7,7 +7,7 @@ using storage;
 
 namespace ThriftServer
 {
-    class StorageServiceHandler : StorageService.Iface
+    public class StorageServiceHandler : StorageService.Iface
     {
         private readonly Dictionary<int, StoragePoint> _point;
 
@@ -22,9 +22,29 @@ namespace ThriftServer
             };
         }
 
+        public bool AddStoragePoint(StoragePoint point)
+        {
+            if (!_point.ContainsKey(point.StorageId))
+            {
+                _point[point.StorageId] = point;
+                return true;
+            }
+            return false;
+        }
+
+        public void ClearStorage()
+        {
+            _point.Clear();
+        }
+
         public void ping()
         {
             Console.WriteLine("ping()");
+        }
+
+        public List<StoragePoint> StoragePoints()
+        {
+            return _point.Values.ToList();
         }
 
         List<StoragePoint> StorageService.ISync.storagePoints()
